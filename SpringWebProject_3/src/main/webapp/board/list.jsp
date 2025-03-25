@@ -12,7 +12,7 @@
  margin-top: 50px;
 }
 .row{
-  margin: opx auto;
+  margin: 0px auto;
   width: 700px;
 }
 </style>
@@ -37,7 +37,7 @@
       <c:forEach var="vo" items="${list }">
         <tr>
             <td width=10% class="text-center">${vo.no }</td>
-            <td width=45%>${vo.subject }</td>
+            <td width=45%><a href="detail.do?no=${vo.no}">${vo.subject }</a></td>
             <td width=15% class="text-center">${vo.name }</td>
             <td width=20% class="text-center">${vo.dbday }</td>
             <td width=10% class="text-center">${vo.hit }</td>

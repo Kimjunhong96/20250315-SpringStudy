@@ -1,10 +1,49 @@
 package com.sist.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-// @ResponseBody => ¸Þ¼Òµå => ClassÇüÅÂ·Î º¯°æ => Ajax / Vue / React¿¬µ¿ 
-@RestController // È­¸éÀÌµ¿ÀÌ ¾Æ´Ï¶ó º¸Åë µ¥ÀÌÅÍ Àü¼Û 
-// => ÀÚ¹Ù½ºÅ©¸³Æ® Àü¼ÛÀÌ °¡´É 
+import com.sist.dao.*;
+import com.sist.vo.*;
+// @ResponseBody => ï¿½Þ¼Òµï¿½ => Classï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ => Ajax / Vue / Reactï¿½ï¿½ï¿½ï¿½ 
+@RestController // È­ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+// => ï¿½Ú¹Ù½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ => JSON / JavaScript  ..
 public class BoardRestController {
-
+	@Autowired
+	private BoardDAO dao;
+	
+	@RequestMapping(value="board/update_ok.do", produces = "text/html;charset=UTF-8")
+	public String board_update_ok(BoardVO vo) {
+		String result="";
+		boolean bCheck=dao.boardUpdate(vo);
+		if(bCheck==true) {
+			result="<script>"
+					+"location.href=\"detail.do?no="+vo.getNo()+"\""
+					+"</script>";
+		}
+		else {
+			result="<script>"
+					+"alert(\"ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤!!\");"
+					+"history.back();"
+					+"</script>";
+		}
+		return result;
+	}
+	@RequestMapping(value="board/delete_ok.do",produces="text/html;charset=UTF-8")
+	public String board_delete_ok(int no,String pwd) {
+		String result="";
+		boolean bCheck=dao.boardDelete(no, pwd);
+		if(bCheck==true) {
+			result="<script>"
+					+"location.href=\"list.do\""
+					+"</script>";
+		}
+		else {
+			result="<script>"
+					+"alert(\"ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë¦½ë‹ˆë‹¤!!!\");"
+					+"history.back();"
+					+"</script>";
+		}
+		return result;
+	}
 }
