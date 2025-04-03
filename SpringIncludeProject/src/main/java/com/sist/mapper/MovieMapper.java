@@ -7,13 +7,13 @@ import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.*;
 public interface MovieMapper {
-	@Insert("INSERT INTO aopMovie VALUES(" 
-			+"#{mno},#{title},#{poster},#{director},#{genre}")
-	public void movieInsert(MovieVO vo);
+//	@Insert("INSERT INTO aopMovie VALUES(" 
+//			+"#{mno},#{title},#{poster},#{director},#{genre}")
+//	public void movieInsert(MovieVO vo);
+//	
+//	@Delete("DELETE FROM aopMovie")
+//	public void movieDelete();
 	
-	@Delete("DELETE FROM aopMovie")
-	public void movieDelete();
-	
-	@Select("SELECT * FROM aopMovie ORDER BY mno")
-	public List<MovieVO> movieListData();
+//	@Select("SELECT * FROM aopMovie ORDER BY mno")
+//	public List<MovieVO> movieListData();
 }

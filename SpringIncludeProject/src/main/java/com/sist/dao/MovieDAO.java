@@ -26,13 +26,13 @@ public class MovieDAO {
 	@Select("SELECT * FROM aopMovie")
 	public List<MovieVO> movieListData();
 	 */
-	public void movieInsert(MovieVO vo) {
-		mapper.movieInsert(vo);
-	}
-	public void movieDelete() {
-		mapper.movieDelete();
-	}
-	public List<MovieVO> movieListData(){
-		return mapper.movieListData();
-	}
+//	public void movieInsert(MovieVO vo) {
+//		mapper.movieInsert(vo);
+//	}
+//	public void movieDelete() {
+//		mapper.movieDelete();
+//	}
+//	public List<MovieVO> movieListData(){
+//		return mapper.movieListData();
+//	}
 }

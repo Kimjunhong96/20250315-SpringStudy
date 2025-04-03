@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.RecipeMapper">
+  <select id="recipeFindData" resultType="com.sist.vo.RecipeVO" parameterType="hashmap">
+    SELECT no,poster,title,chef,num
+    FROM (SELECT no,poster,title,chef,rownum as num 
+    FROM (SELECT no,poster,title,chef 
+    FROM recipe WHERE title LIKE '%'||#{fd}||'%' 
+    AND no IN(SELECT no FROM recipe INTERSECT SELECT no FROM recipedetail)))
+    WHERE num BETWEEN #{start} AND #{end}
+  </select>
+  <select id="recipeFindTotalPage" resultType="int" parameterType="hashmap">
+    SELECT CEIL(COUNT(*)/12.0) FROM recipe
+    WHERE REGEXP_LIKE(title,#{fd}) 
+    AND no IN(SELECT no FROM recipe INTERSECT SELECT no FROM recipedetail)
+  </select>
+  
+  <!-- chef -->
+  <select id="chefListData" resultType="com.sist.vo.ChefVO" parameterType="hashmap">
+    SELECT no,chef,poster,mem_cont1,mem_cont2,mem_cont3,mem_cont7,num 
+    FROM (SELECT no,chef,poster,mem_cont1,mem_cont2,mem_cont3,mem_cont7,rownum as num 
+    FROM (SELECT no,chef,poster,mem_cont1,mem_cont2,mem_cont3,mem_cont7 
+    FROM chef ORDER BY no))
+    WHERE num BETWEEN #{start} AND #{end} 
+  </select>
+</mapper>

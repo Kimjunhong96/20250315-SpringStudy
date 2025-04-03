@@ -19,14 +19,14 @@
      <th class="text-center"></th>
      <th class="text-center">영화명</th>
    </tr>
-   <c:forEach var="mvo" items="${kList }">
+   <!--<c:forEach var="mvo" items="${kList }">
      <tr>
       <td class="text-center">${mvo.mno }</td>
       <td class="text-center">
       <img src="${mvo.poster }" style="width:30px; height:50px;"></td>
       <td>${mvo.title }</td>
      </tr>
-   </c:forEach>
+   </c:forEach> -->
  </table>
 </body>
 </html>

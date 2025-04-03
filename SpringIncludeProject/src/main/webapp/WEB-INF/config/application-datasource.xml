@@ -43,6 +43,7 @@
 		id="ssf"
 		class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"
+		p:configLocation="/WEB-INF/config/Config.xml"
 		
 	/>
 	<!-- SqlSessionFactoryBean를 이용해서 Mapper 구현
