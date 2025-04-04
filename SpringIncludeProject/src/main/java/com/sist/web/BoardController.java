@@ -1,4 +1,5 @@
 package com.sist.web;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class BoardController {
 	   int totalpage=(int)(Math.ceil(count/10.0));
 	   count=count-((curpage*10)-10);
 	   
+	   String msg="";
+	   String today=new SimpleDateFormat("yyyy-MM-dd").format(null);
 	   model.addAttribute("list", list);
 	   model.addAttribute("curpage", curpage);
 	   model.addAttribute("totalpage", totalpage);
@@ -57,5 +60,21 @@ public class BoardController {
 	   model.addAttribute("vo",vo);
 	   model.addAttribute("main_jsp", "../replyboard/update.jsp");
 	   return "main/main";
+   }
+   
+   @GetMapping("board/reply.do")
+   public String board_reply(int no,Model model) {
+	   model.addAttribute("no", no);
+	   model.addAttribute("main_jsp", "../replyboard/reply.jsp");
+	   return "main/main"; // ../ (x)
+   }
+   @PostMapping("board/reply_ok.do")
+   public String board_reply_ok(int pno,BoardVO vo) {
+	   dao.replyInsert(pno, vo);
+	   return "redirect:../board/list.do";
+   }
+   @GetMapping("board/delete.do")
+   public String board_delete(int no,Model model) {
+	   return "";
    }
 }
