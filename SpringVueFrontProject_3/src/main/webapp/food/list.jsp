@@ -29,7 +29,7 @@ p{
      <div class="col-md-3" v-for="vo in list">
      <div class="thumbnail">
       <a href="#">
-        <img :src="'https://menupan.com'+vo.poster" style="width:230px; height: 200px;">
+        <img :src="'https://www.menupan.com'+vo.poster" style="width:230px; height: 200px;">
         <div class="caption">
           <p>{{vo.name}}</p>
         </div>
