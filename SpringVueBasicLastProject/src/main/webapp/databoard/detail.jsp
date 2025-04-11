@@ -101,6 +101,12 @@
 		          >
 		       </td>
 		      </tr>
+		      <%--
+		         	출력 : <태그>{{반드시 data()}}</태그>
+		         	속성 : 일반 데이터 (: X)
+		         	
+		       --%>
+		      
 		      <tr :id="'m'+rvo.no" class="insert">
 		       <td><textarea rows="4" cols="65" style="float: left"
 		            :id="'imsg'+rvo.no"

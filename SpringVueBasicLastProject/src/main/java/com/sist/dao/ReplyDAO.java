@@ -58,4 +58,6 @@ public class ReplyDAO {
 		ReplyVO vo=mapper.replyInfoData(no);
 		mapper.replyDelete(vo);
 	}
+	// transaction 사용 
+	
 }
