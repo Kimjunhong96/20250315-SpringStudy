@@ -36,4 +36,23 @@ public interface ReplyMapper {
   @Delete("DELETE FROM vueReply "
 		  +"WHERE group_id=#{group_id} AND group_step>=#{group_step}")
   public void replyDelete(ReplyVO vo);
+  
+  // 1. 상위 => group_id , group_step , group_tab 
+  @Select("SELECT group_id,group_step,group_tab "
+		  +"FROM vueReply "
+		  +"WHERE no=#{no}")
+  public ReplyVO replyParentInfoData(int no);
+  // 2. 출력 순위 변경 
+  @Update("UPDATE vueReply SET "
+		  +"group_step=group_step+1 "
+		  +"WHERE group_id=#{group_id} AND group_step>#{group_step}")
+  public void replyGroupStepIncrement(ReplyVO vo);
+  // 3. insert
+  @Insert("INSERT INTO vueReply(no,bno,id,name,msg, "
+		  +"group_id,group_step,group_tab) "
+		  +"VALUES((SELECT NVL(MAX(no)+1,1) FROM vueReply), "
+		  +"#{bno},#{id},#{name},#{msg}," 
+		  +"#{group_id},#{group_step},#{group_tab})")
+  public void replyReplyInsert(ReplyVO vo);
+  
 }
