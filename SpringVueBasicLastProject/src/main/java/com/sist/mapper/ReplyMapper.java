@@ -1,9 +1,11 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.*;
 public interface ReplyMapper {
@@ -21,4 +23,17 @@ public interface ReplyMapper {
 		  +"(SELECT NVL(MAX(group_id)+1,1) FROM vueReply))")
   public void replyInsert(ReplyVO vo);
   
+  @Update("UPDATE vueReply SET "
+		  +"msg=#{msg} "
+		  +"WHERE no=#{no}")
+  public void replyUpdate(ReplyVO vo);
+  
+  @Select("SELECT no,group_id,group_step "
+		  +"FROM vueReply "
+		  +"WHERE no=#{no}")
+  public ReplyVO replyInfoData(int no);
+  
+  @Delete("DELETE FROM vueReply "
+		  +"WHERE group_id=#{group_id} AND group_step>=#{group_step}")
+  public void replyDelete(ReplyVO vo);
 }
