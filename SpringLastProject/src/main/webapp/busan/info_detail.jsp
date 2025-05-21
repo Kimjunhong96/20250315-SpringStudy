@@ -79,7 +79,7 @@
     </div>
   </div>
 
-<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=72fa81817487692b6dc093004af97650&libraries=services&libraries=services"></script>
+<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b72d19d574bc9065c96bcc5bdc881fc0&libraries=services&libraries=services"></script>
 <script>
 // 마커를 담을 배열입니다
 var markers = [];

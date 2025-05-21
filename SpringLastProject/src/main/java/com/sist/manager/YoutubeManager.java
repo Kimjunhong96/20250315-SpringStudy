@@ -19,7 +19,8 @@ public class YoutubeManager {
 	   String result="";
 	   try
 	   {
-		   String strUrl="https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+URLEncoder.encode(fd, "UTF-8")+"&type=video&key=";
+		   String strUrl="https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q="+URLEncoder.encode(fd, "UTF-8")+"&type=video&key=AIzaSyCFk1kXA-JsoVaRQeFYhKAHCNML1BxHYgM\r\n"
+		   		+ "";
 	       URL url=new URL(strUrl);
 	       HttpURLConnection conn=
 	    		     (HttpURLConnection)url.openConnection();

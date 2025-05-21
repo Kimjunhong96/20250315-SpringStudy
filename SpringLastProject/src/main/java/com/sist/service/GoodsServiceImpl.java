@@ -2,14 +2,20 @@ package com.sist.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.sist.dao.GoodsDAO;
 import com.sist.service.*;
 import com.sist.vo.*;
+@Service
 public class GoodsServiceImpl implements GoodsService {
 	@Autowired
 	private GoodsDAO gDao;
+	
+	// Cart
+	
 
 	@Override
 	public List<GoodsVO> busanGoodsListData(int start, int end) {

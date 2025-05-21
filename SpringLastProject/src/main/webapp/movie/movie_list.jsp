@@ -18,7 +18,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>부산 여행 동영상</h2>
+                        <h2>영화</h2>
                     </div>
                 </div>
             </div>
@@ -44,17 +44,21 @@
     <section class="archive-area section_padding_80" id="listApp">
         <div class="container">
                <div class="text-center" style="display: block">
-                  <input type=text class="form-control" v-model="fd" @keydown.enter="movieFind()">
+               	  <input type="button" class="btn-sm btn-danger" value="인기영화" @click="view('https://api.themoviedb.org/3/movie/popular')">
+               	  <input type="button" class="btn-sm btn-info" value="현재 상영작" @click="view('https://api.themoviedb.org/3/movie/now_playing')">
+               	  <input type="button" class="btn-sm btn-success" value="인기 TV쇼" @click="view('https://api.themoviedb.org/3/tv/popular')">
+               	  <input type="button" class="btn-sm btn-warning" value="TV쇼 순위" @click="view('https://api.themoviedb.org/3/tv/top_rated')">
                 </div>
                 <div style="height: 20px"></div>
             <div class="row">
                 
                 <!-- Single Post -->
-                <div class="col-12 col-md-6 col-lg-4" v-for="vo in list">
+                <div class="col-12 col-md-6 col-lg-4" v-for="vo in movies">
                     <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
-                          <iframe :src="'http://www.youtube.com/embed/'+vo.vedioId" style="width:320px;height: 250px"></iframe>
+                          <a :href="'https://www.thmoviedb.org/movie/'+vo.id"></a>
+                          <img :src="'https://image.tmdb.org/t/p/w500/'+vo.poster_path">
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
@@ -62,7 +66,7 @@
                                 <div class="post-author-date-area d-flex">
                                     <!-- Post Author -->
                                     <div class="post-author">
-                                        <a href="#"></a>
+                                        <a href="#">{{vo.vote_average}}</a>
                                     </div>
                                     
                                 </div>
@@ -83,30 +87,24 @@
     	// 멤버변수 => Model => 변경시에는 바로 View(JSP)에 적용
     	data(){
     		return {
-    		   fd:'부산여행',
-    		   list:[]
+    		   movies:[]
     		}
     	},
     	// VM => ViewModel => 변수를 변경하는 역할 
     	// MVVM : 필수로 면접 
     	mounted(){
-    	   this.dataRecv()
+    	   
     	},
     	// 사용자 정의 함수 정의 => 이벤트 
     	methods:{
-    		movieFind(){
-    			this.dataRecv()
+    		view(url){
+    			axios.get(url+"?api_key=697729d3f274ce88cf5729d38280fd33")
+    			.then(res=>{
+    				this.movies=res.data.results
+    			})
     		},
     		dataRecv(){
-    			axios.get("../movie/find_vue.do",{
-    				params:{
-    					fd:this.fd
-    				}
-    			}).then(res=>{
-    				this.list=res.data.list
-    			}).catch(error=>{
-    				console.log(error.response)
-    			})
+    			
     		}
     	}
     }).mount("#listApp")

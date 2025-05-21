@@ -43,5 +43,14 @@ public class GoodsRestController {
 	  GoodsVO vo=service.busanGoodsDetailData(no);
 	  return vo;
   }
+  @GetMapping("goods/buy_vue.do")
+  public String goods_buy(int cno)
+  {
+	  String result"";
+	  try {
+		  result="yes";
+		  service.goodsBuy
+	  }
+  }
 }
 
